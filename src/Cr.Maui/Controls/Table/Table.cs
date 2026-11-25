@@ -1,7 +1,7 @@
 ﻿namespace Cr.Maui.Controls;
 
 [ContentProperty(nameof(Columns))]
-public sealed partial class Table : ContentView
+public partial class Table : ContentView
 {
     public static readonly BindableProperty ColumnSpacingProperty =
         BindableProperty.Create(
@@ -131,7 +131,7 @@ public sealed partial class Table : ContentView
         ((Table)bindable).ScheduleUpdate();
     }
 
-    public bool ScheduleUpdate()
+    private bool ScheduleUpdate()
     {
         if (_updateScheduled)
             return false;
