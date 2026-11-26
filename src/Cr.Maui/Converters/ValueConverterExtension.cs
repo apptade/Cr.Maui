@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace Cr.Maui.Converters;
+﻿namespace Cr.Maui.Converters;
 
 public abstract class ValueConverterExtension : IValueConverter, IMarkupExtension<IValueConverter>
 {

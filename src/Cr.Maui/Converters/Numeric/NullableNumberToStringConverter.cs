@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace Cr.Maui.Converters;
+﻿namespace Cr.Maui.Converters;
 
 [AcceptEmptyServiceProvider]
 public abstract class NullableNumberToStringConverter<TNumber> : ValueConverterExtension where TNumber : struct, IFormattable
