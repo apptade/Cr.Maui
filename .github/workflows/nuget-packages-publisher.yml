@@ -1,0 +1,45 @@
+name: NuGet packages builder
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        required: true
+        type: string
+      version:
+        required: true
+        type: string
+
+jobs:
+  publish:
+    runs-on: xcode-27
+
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 11.0.x
+
+      - name: Install .NET MAUI workload
+        run: dotnet workload install maui
+
+      - name: Pack
+        env:
+          PROJECT: ${{ inputs.project }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          dotnet pack "src/${PROJECT}" \
+            -c Release \
+            -o ./artifacts \
+            -p:PackageVersion="${VERSION#v}"
+
+      - name: Upload NuGet package
+        uses: actions/upload-artifact@v7
+        with:
+          name: maui-nuget-package-${{ inputs.version }}
+          path: ./artifacts/*.nupkg
+          if-no-files-found: error
