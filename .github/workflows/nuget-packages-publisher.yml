@@ -12,7 +12,7 @@ on:
 
 jobs:
   publish:
-    runs-on: xcode-27
+    runs-on: windows-latest
 
     permissions:
       contents: read
@@ -24,10 +24,11 @@ jobs:
         with:
           dotnet-version: 11.0.x
 
-      - name: Install .NET MAUI workload
-        run: dotnet workload install maui
+      - name: Install .NET MAUI workloads
+        run: dotnet workload install maui ios android maccatalyst
 
       - name: Pack
+        shell: bash
         env:
           PROJECT: ${{ inputs.project }}
           VERSION: ${{ inputs.version }}
