@@ -20,6 +20,7 @@
 
 	<PropertyGroup>
 		<Description>$(PackageId) is a .NET MAUI library: controls, converters, and more, built with a focus on performance and simplicity.</Description>
+		<PackageTags>$(PackageTags);ui;controls;toolkit;table</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>
